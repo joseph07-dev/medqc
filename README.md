@@ -2,6 +2,9 @@
 
 **Track 03 · Medical Imaging & Computer Vision (IEEE EMBS hackathon submission)**
 
+**Live app:** [https://kclyvpmwxya9ebazedsvc9.streamlit.app](https://kclyvpmwxya9ebazedsvc9.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://kclyvpmwxya9ebazedsvc9.streamlit.app)
+
 Downstream medical-imaging models fail *silently*: a blurred, over-exposed, rotated, or
 occluded image still flows through the pipeline and produces a confident — and wrong —
 prediction. Classical quality checks (Laplacian sharpness, clipped-pixel exposure) are too
@@ -22,6 +25,8 @@ any clinical model and rejects non-diagnostic images with **machine-readable rea
 | Beat naive baselines | Classical baselines evaluated head-to-head (F1 0.36 / 0.32 vs gate AUROC 0.963) |
 
 ## How it works
+
+![MedQC clinical dashboard](assets/app_screenshot.png)
 
 ```
 image ──► degradation-aware preprocessing (224px, ImageNet norm)
@@ -108,7 +113,7 @@ No API keys are required — inference is fully local (see `.env.example`).
 
 ## Deployment
 
-- **App:** Streamlit Community Cloud (HTTPS) — link in submission form.
+- **App:** [Streamlit Community Cloud (HTTPS)](https://kclyvpmwxya9ebazedsvc9.streamlit.app).
 - **Keep-alive:** `.github/workflows/keepalive.yml` pings the deployed URL every 10 minutes
   so live probes always hit a warm instance (set repository variable `MEDQC_APP_URL`).
 - **CI:** `.github/workflows/ci.yml` runs ruff + pytest on Python 3.11/3.12 and a
