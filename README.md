@@ -140,6 +140,16 @@ No API keys are required — inference is fully local (see `.env.example`).
   demo-pair schema, **no plaintext credential patterns anywhere in the tree**.
 - `test_e2e` — full image-in/decision-out invariants and interactive latency.
 
+## Accessibility
+
+- **Contrast:** dark theme with WCAG AA+ text/background contrast (light `#f8fafc` on `#0e1117`).
+- **Keyboard:** every control (upload, sample buttons, sliders, tabs) is reachable and
+  operable via `Tab`/`Enter` — Streamlit renders native ARIA-labelled widgets and tab lists.
+- **Non-colour cues:** decisions carry text + symbols (`✔ ACCEPT` / `✖ REJECT`) and
+  machine-readable reason-code chips, never colour alone; severity bars include text labels.
+- **Responsive layout:** tested against a mobile viewport (`width=device-width`, fluid
+  containers); images scale without horizontal scroll; 5 MB upload cap with clear errors.
+
 ## Security
 
 See [SECURITY.md](SECURITY.md). In short: zero secrets in the repo (enforced by test +
