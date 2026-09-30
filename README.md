@@ -2,8 +2,6 @@
 
 **Track 03 · Medical Imaging & Computer Vision (IEEE EMBS hackathon submission)**
 
-**Live app:** [https://kclyvpmwxya9ebazedsvc9.streamlit.app](https://kclyvpmwxya9ebazedsvc9.streamlit.app)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://kclyvpmwxya9ebazedsvc9.streamlit.app)
 [![CI](https://github.com/joseph07-dev/medqc/actions/workflows/ci.yml/badge.svg)](https://github.com/joseph07-dev/medqc/actions/workflows/ci.yml)
 [![tests](https://img.shields.io/badge/tests-61%20passed-brightgreen)](https://github.com/joseph07-dev/medqc)
 [![coverage](https://img.shields.io/badge/coverage-97%25-brightgreen)](https://github.com/joseph07-dev/medqc)
@@ -94,7 +92,7 @@ medqc/
 ├── notebooks/train.ipynb      # full training + export notebook (Kaggle)
 ├── weights/                   # int8 + fp32 ONNX models
 ├── assets/samples/            # bundled demo images
-├── .github/workflows/         # CI (lint+tests+secret scan) & keep-alive ping
+├── .github/workflows/         # CI (lint+tests+coverage gate+secret scan)
 ├── metrics.json               # all reported numbers (single source of truth)
 ├── downstream_results.json    # silent-failure demo pairs
 ├── MODEL_CARD.md  SECURITY.md
@@ -117,11 +115,10 @@ No API keys are required — inference is fully local (see `.env.example`).
 
 ## Deployment
 
-- **App:** [Streamlit Community Cloud (HTTPS)](https://kclyvpmwxya9ebazedsvc9.streamlit.app).
-- **Keep-alive:** `.github/workflows/keepalive.yml` pings the deployed URL every 10 minutes
-  so live probes always hit a warm instance (set repository variable `MEDQC_APP_URL`).
-- **CI:** `.github/workflows/ci.yml` runs ruff + pytest on Python 3.11/3.12 and a
-  gitleaks secret scan on every push.
+- **Run locally:** `streamlit run app.py` serves the dashboard on `http://localhost:8501`
+  (fully offline inference — no keys, no external services).
+- **CI:** `.github/workflows/ci.yml` runs ruff + pytest (+90 % coverage gate) on Python
+  3.11/3.12 and a gitleaks secret scan on every push.
 
 ## Testing
 

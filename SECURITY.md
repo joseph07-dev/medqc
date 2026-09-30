@@ -30,9 +30,7 @@ file public issues for exploitable vulnerabilities. We aim to acknowledge report
 
 ## Deployment hygiene
 
-- Streamlit Community Cloud over **HTTPS** only.
-- The keep-alive workflow pings the app with `curl` GET requests — it needs no tokens
-  beyond the default `GITHUB_TOKEN`.
+- Fully local inference — no cloud deployment, no outbound requests at runtime.
 - Repository secret scanning / push protection should be enabled in GitHub settings.
 
 ## Supported versions
