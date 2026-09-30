@@ -1,0 +1,18 @@
+{
+  "pairs": [
+    {
+      "modality": "retinal_fundus",
+      "clean_png": "assets/samples/pair_retina_clean.png",
+      "deg_png": "assets/samples/pair_retina_degraded.png",
+      "probe": false,
+      "y_true": null,
+      "clean_pred": null,
+      "clean_conf": null,
+      "deg_pred": null,
+      "deg_conf": null,
+      "gate_clean": "ACCEPT",
+      "gate_deg": "ACCEPT",
+      "reasons": []
+    }
+  ]
+}

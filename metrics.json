@@ -1,0 +1,108 @@
+{
+  "input_size": 224,
+  "epochs": 5,
+  "modalities": [
+    "chest_xray_pneumonia",
+    "retinal_fundus"
+  ],
+  "n_train": 5788,
+  "n_val_degraded": 644,
+  "gate_rule": "REJECT if any attribute severe or >=2 attributes mild",
+  "val": {
+    "per_attr_acc": [
+      0.9922,
+      0.7127,
+      0.9332,
+      0.9829
+    ],
+    "per_attr_names": [
+      "BLUR",
+      "EXPOSURE",
+      "ROTATION",
+      "OCCLUSION"
+    ],
+    "gate_acc": 0.9053,
+    "gate_auroc": 0.9634,
+    "ece_pre_calibration": 0.0947,
+    "ece_post_calibration": 0.0947,
+    "temperature": 1.0,
+    "clean_accept_rate": 0.0606,
+    "decision": {
+      "mode": "rule",
+      "tau": null
+    },
+    "stratified_by_modality": {
+      "chest_xray": {
+        "n": 524,
+        "gate_acc": 0.9237,
+        "gate_auroc": 0.9736,
+        "reject_rate": 0.626
+      },
+      "retina": {
+        "n": 120,
+        "gate_acc": 0.825,
+        "gate_auroc": 0.8806,
+        "reject_rate": 0.7417
+      }
+    }
+  },
+  "classical_baseline": {
+    "blur_severe": {
+      "f1": 0.36,
+      "threshold": 2.2956,
+      "precision": 0.4154,
+      "recall": 0.3176
+    },
+    "exposure_severe": {
+      "f1": 0.3183,
+      "threshold": 0.0,
+      "precision": 0.1931,
+      "recall": 0.906
+    },
+    "method": "Laplacian-variance (blur) / clipped-pixel-fraction (exposure); thresholds tuned on validation"
+  },
+  "train_log": [
+    {
+      "epoch": 0,
+      "loss": 1.1796,
+      "sev_acc": 0.7642,
+      "sec": 12.8
+    },
+    {
+      "epoch": 1,
+      "loss": 0.7075,
+      "sev_acc": 0.893,
+      "sec": 12.8
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6222,
+      "sev_acc": 0.909,
+      "sec": 13.1
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5513,
+      "sev_acc": 0.9153,
+      "sec": 12.9
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5345,
+      "sev_acc": 0.9187,
+      "sec": 13.3
+    }
+  ],
+  "latency_ms": {
+    "p50": 31.31,
+    "p95": 33.14,
+    "runs": 50,
+    "provider": "CPUExecutionProvider",
+    "model": "int8_dynamic"
+  },
+  "model": {
+    "arch": "mobilenet_v3_small_imagenet_finetuned",
+    "params": 1078061,
+    "input_size": 224
+  }
+}
