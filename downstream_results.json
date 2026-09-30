@@ -1,9 +1,9 @@
 {
   "pairs": [
     {
-      "modality": "retinal_fundus",
-      "clean_png": "assets/samples/pair_retina_clean.png",
-      "deg_png": "assets/samples/pair_retina_degraded.png",
+      "modality": "chest_xray",
+      "clean_png": "assets/samples/pair_chest_xray_clean.png",
+      "deg_png": "assets/samples/pair_chest_xray_degraded.png",
       "probe": false,
       "y_true": null,
       "clean_pred": null,
@@ -11,8 +11,26 @@
       "deg_pred": null,
       "deg_conf": null,
       "gate_clean": "ACCEPT",
-      "gate_deg": "ACCEPT",
-      "reasons": []
+      "gate_deg": "REJECT",
+      "reasons": [
+        "ROTATION_SEVERE"
+      ]
+    },
+    {
+      "modality": "retinal_fundus",
+      "clean_png": "assets/samples/pair_retinal_fundus_clean.png",
+      "deg_png": "assets/samples/pair_retinal_fundus_degraded.png",
+      "probe": false,
+      "y_true": null,
+      "clean_pred": null,
+      "clean_conf": null,
+      "deg_pred": null,
+      "deg_conf": null,
+      "gate_clean": "ACCEPT",
+      "gate_deg": "REJECT",
+      "reasons": [
+        "MULTI_MILD"
+      ]
     }
   ]
 }

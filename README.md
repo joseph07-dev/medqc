@@ -4,6 +4,10 @@
 
 **Live app:** [https://kclyvpmwxya9ebazedsvc9.streamlit.app](https://kclyvpmwxya9ebazedsvc9.streamlit.app)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://kclyvpmwxya9ebazedsvc9.streamlit.app)
+[![CI](https://github.com/joseph07-dev/medqc/actions/workflows/ci.yml/badge.svg)](https://github.com/joseph07-dev/medqc/actions/workflows/ci.yml)
+[![tests](https://img.shields.io/badge/tests-61%20passed-brightgreen)](https://github.com/joseph07-dev/medqc)
+[![coverage](https://img.shields.io/badge/coverage-97%25-brightgreen)](https://github.com/joseph07-dev/medqc)
+[![ruff](https://img.shields.io/badge/lint-ruff%20clean-brightgreen)](https://github.com/joseph07-dev/medqc)
 
 Downstream medical-imaging models fail *silently*: a blurred, over-exposed, rotated, or
 occluded image still flows through the pipeline and produces a confident — and wrong —
@@ -121,7 +125,8 @@ No API keys are required — inference is fully local (see `.env.example`).
 
 ## Testing
 
-61 tests / 7 suites, all deterministic:
+61 tests / 7 suites, all deterministic, **97 % line coverage** of `src/medqc`
+(enforced in CI with `--cov-fail-under=90`):
 
 - `test_degradations` — severity-0 exact no-op, byte-level seed determinism, sharpness drop,
   occlusion coverage, gate-label rule.

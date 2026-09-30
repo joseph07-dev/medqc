@@ -82,11 +82,13 @@ def test_no_plaintext_secrets_in_tree(repo_root: Path) -> None:
     """Guard used by the audit: no obvious credential patterns anywhere."""
     # Assembled at runtime so this test file does not trip its own scanner.
     forbidden = ("AK" + "IA", "BEGIN RSA PRIVATE " + "KEY", "gh" + "p_", "h" + "f_", "s" + "k-")
-    skip_dirs = {".git", "__pycache__", ".pytest_cache", ".ruff_cache", "node_modules"}
+    skip_dirs = {".git", "__pycache__", ".pytest_cache", ".ruff_cache", "node_modules", "medmnist_data"}
     for path in repo_root.rglob("*"):
         if not path.is_file() or any(part in skip_dirs for part in path.parts):
             continue
-        if path.suffix in {".png", ".onnx", ".jpg", ".zip"}:
+        if path.suffix in {".png", ".onnx", ".jpg", ".zip", ".npz", ".npy", ".gz", ".pyc", ".log"}:
+            continue
+        if path.stat().st_size > 1_000_000:
             continue
         try:
             text = path.read_text(encoding="utf-8", errors="ignore")

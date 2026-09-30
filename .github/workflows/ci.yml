@@ -29,8 +29,8 @@ jobs:
       - name: Type-shaped sanity import
         run: python -c "import medqc; print(medqc.__version__)"
 
-      - name: Tests (pytest)
-        run: pytest -v --tb=short
+      - name: Tests (pytest + coverage)
+        run: pytest -v --tb=short --cov=medqc --cov-report=term-missing --cov-fail-under=90
 
       - name: Secret scan (gitleaks)
         uses: gitleaks/gitleaks-action@v2
