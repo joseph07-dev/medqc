@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Ping deployed app
         env:
-          APP_URL: ${{ vars.MEDQC_APP_URL }}
+          APP_URL: ${{ vars.MEDQC_APP_URL || 'https://kclyvpmwxya9ebazedsvc9.streamlit.app' }}
         run: |
           if [ -z "$APP_URL" ]; then
             echo "Set repository variable MEDQC_APP_URL to your Streamlit URL." >&2
