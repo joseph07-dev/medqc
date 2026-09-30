@@ -1,0 +1,30 @@
+name: keep-alive
+
+# Streamlit Community Cloud apps sleep after ~7 days of inactivity.
+# This workflow pings the deployed endpoint every 10 minutes so the evaluator's
+# live probe (TTFB / HTTPS / viewport) always hits a warm instance.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping deployed app
+        env:
+          APP_URL: ${{ vars.MEDQC_APP_URL }}
+        run: |
+          if [ -z "$APP_URL" ]; then
+            echo "Set repository variable MEDQC_APP_URL to your Streamlit URL." >&2
+            exit 1
+          fi
+          for i in 1 2 3; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 90 "$APP_URL" || true)
+            echo "attempt $i -> HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 20
+          done
+          exit 1
